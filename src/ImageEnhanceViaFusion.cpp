@@ -87,13 +87,13 @@ cv::Mat AdaptiveColorBalance::apply(  cv::Mat image,
 
         float low_diff = low_value - low_values_[j];
         if(low_diff)
-          low_diff < 0 ? low_values_[j] -= learn_rate
-                        : low_values_[j] += learn_rate;
+            low_diff < 0 ? low_values_[j] -= learn_rate
+                         : low_values_[j] += learn_rate;
 
         float top_diff = top_value - top_values_[j];
         if(top_diff)
-          top_diff < 0 ? top_values_[j] -= learn_rate
-                       : top_values_[j] += learn_rate;
+            top_diff < 0 ? top_values_[j] -= learn_rate
+                         : top_values_[j] += learn_rate;
 
         for (int m = 0; m < channels[j].rows; m++)
             for (int n = 0; n < channels[j].cols; n++) {
@@ -107,9 +107,9 @@ cv::Mat AdaptiveColorBalance::apply(  cv::Mat image,
     }
 
   if(image.channels() == 3)
-    cv::merge(channels, image);
+      cv::merge(channels, image);
   else
-    image = channels[0];
+      image = channels[0];
 
   return image;
 }

@@ -50,23 +50,23 @@ BOOST_AUTO_TEST_CASE(colorBalanceByChannel_testcase) {
 
   while(capture.grab()){
 
-    cv::Mat img;
-    capture.retrieve(img);
-    cv::imshow("out original" , img);
-    img = colorBalance(img, cv::Scalar(0.01,0.001,0.001));
-    cv::imshow("out colorBalance " , img);
+      cv::Mat img;
+      capture.retrieve(img);
+      cv::imshow("out original" , img);
+      img = colorBalance(img, cv::Scalar(0.01,0.001,0.001));
+      cv::imshow("out colorBalance " , img);
 
-    cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE(2, cv::Size(4, 4));
-    std::vector<cv::Mat> channels;
-    cv::cvtColor(img, img, CV_BGR2HSV);
-    cv::split(img, channels);
-    clahe->apply(channels[2], channels[2]);
-    cv::merge(channels, img);
-    cv::cvtColor(img, img, CV_HSV2BGR);
+      cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE(2, cv::Size(4, 4));
+      std::vector<cv::Mat> channels;
+      cv::cvtColor(img, img, CV_BGR2HSV);
+      cv::split(img, channels);
+      clahe->apply(channels[2], channels[2]);
+      cv::merge(channels, img);
+      cv::cvtColor(img, img, CV_HSV2BGR);
 
-    cv::imshow("out CLAHE " , img);
+      cv::imshow("out CLAHE " , img);
 
-    cv::waitKey();
+      cv::waitKey();
   }
 }
 
@@ -82,12 +82,12 @@ BOOST_AUTO_TEST_CASE(AdaptiveColorBalance_testcase) {
                                        cv::Scalar(190, 235, 60));
   while(capture.grab()){
 
-    cv::Mat img;
-    capture.retrieve(img);
-    cv::imshow("out original" , img);
-    img = color_balance.apply(img, 0.01, 0.1);
-    cv::imshow("out colorBalance " , img);
+      cv::Mat img;
+      capture.retrieve(img);
+      cv::imshow("out original" , img);
+      img = color_balance.apply(img, 0.01, 0.1);
+      cv::imshow("out colorBalance " , img);
 
-    cv::waitKey(1);
+      cv::waitKey(1);
   }
 }
