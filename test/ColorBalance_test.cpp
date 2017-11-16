@@ -10,7 +10,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-#include <underwater_image_tools/ImageEnhanceViaFusion.hpp>
+#include <underwater_image_tools/ColorBalance.hpp>
 
 #define FILE_NAME "img_%02d.jpg"
 #define LOCAL_PATH "/dataset/"

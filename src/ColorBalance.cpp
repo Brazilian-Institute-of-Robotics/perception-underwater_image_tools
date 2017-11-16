@@ -1,4 +1,4 @@
-#include "ImageEnhanceViaFusion.hpp"
+#include "ColorBalance.hpp"
 
 #include <vector>
 #include <iostream>
