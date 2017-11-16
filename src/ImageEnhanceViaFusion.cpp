@@ -9,8 +9,8 @@
 namespace underwater_image_tools {
 
 
-// percent should have values between 0.0001 and 0.05
-cv::Mat colorBalance( cv::Mat image, const cv::Scalar& percent_channel ){
+// percent suggested values between 0.0001 and 0.05
+void colorBalance( cv::Mat& image, const cv::Scalar& percent_channel ){
 
     std::vector<cv::Mat> channels;
     if(image.channels() == 3)
@@ -41,13 +41,11 @@ cv::Mat colorBalance( cv::Mat image, const cv::Scalar& percent_channel ){
         cv::merge(channels, image);
     else
         image = channels[0];
-
-  return image;
 }
 
-cv::Mat colorBalance(cv::Mat image, float percent){
+void colorBalance(cv::Mat& image, float percent){
     cv::Scalar percent_channel(percent, percent, percent, 0);
-    return colorBalance(image, percent_channel);
+    colorBalance(image, percent_channel);
 }
 
 AdaptiveColorBalance::AdaptiveColorBalance()
@@ -67,9 +65,9 @@ AdaptiveColorBalance::AdaptiveColorBalance(
 }
 
 
-cv::Mat AdaptiveColorBalance::apply(  cv::Mat image,
-                                        float clip_value,
-                                        float learn_rate){
+void AdaptiveColorBalance::apply(  cv::Mat& image,
+                                   float clip_value,
+                                   float learn_rate){
 
     std::vector<cv::Mat> channels;
     if(image.channels() == 3)
@@ -106,12 +104,10 @@ cv::Mat AdaptiveColorBalance::apply(  cv::Mat image,
         cv::normalize(channels[j], channels[j], 0, 255, cv::NORM_MINMAX);
     }
 
-  if(image.channels() == 3)
-      cv::merge(channels, image);
-  else
-      image = channels[0];
-
-  return image;
+    if(image.channels() == 3)
+        cv::merge(channels, image);
+    else
+        image = channels[0];
 }
 
 

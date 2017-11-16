@@ -5,8 +5,8 @@
 
 namespace underwater_image_tools {
 
-cv::Mat colorBalance(cv::Mat image, float percent = 0.05);
-cv::Mat colorBalance(cv::Mat image, const cv::Scalar& percent_channel);
+void colorBalance(cv::Mat& image, float percent = 0.05);
+void colorBalance(cv::Mat& image, const cv::Scalar& percent_channel);
 
 class AdaptiveColorBalance {
 
@@ -15,7 +15,7 @@ public:
     AdaptiveColorBalance(cv::Scalar intial_low_value,
                          cv::Scalar intial_top_value);
 
-    cv::Mat apply(cv::Mat image,
+    void apply(cv::Mat& image,
                   float clip_value = 0.01,
                   float learn_rate = 0.5);
 
