@@ -22,36 +22,59 @@ using namespace underwater_image_tools;
 BOOST_AUTO_TEST_CASE(colorBalance_testcase) {
 
 
-    std::string path_daset = ABSOLUTE_PATH.substr(
+    std::string path_dataset = ABSOLUTE_PATH.substr(
                                             0,
                                             ABSOLUTE_PATH.find_last_of("/"));
 
-    path_daset += std::string(LOCAL_PATH) + std::string(FILE_NAME);
-    std::cout << "DATASET PATH " << path_daset << std::endl;
+    path_dataset += std::string(LOCAL_PATH) + std::string(FILE_NAME);
+    std::cout << "DATASET PATH " << path_dataset << std::endl;
 
-    cv::VideoCapture capture(path_daset);
+    cv::VideoCapture capture(path_dataset);
 
     while(capture.grab()){
 
         cv::Mat img;
         capture.retrieve(img);
         colorBalance(img, 0.01);
-        cv::imshow("out original" , img);
-        cv::waitKey();
+        cv::imshow("out processed" , img);
+        cv::waitKey(30);
+    }
+}
+
+BOOST_AUTO_TEST_CASE(colorBalanceGray_testcase) {
+
+
+    std::string path_dataset = ABSOLUTE_PATH.substr(
+                                            0,
+                                            ABSOLUTE_PATH.find_last_of("/"));
+
+    path_dataset += std::string(LOCAL_PATH) + std::string(FILE_NAME);
+    std::cout << "DATASET PATH " << path_dataset << std::endl;
+
+    cv::VideoCapture capture(path_dataset);
+
+    while(capture.grab()){
+
+        cv::Mat img;
+        capture.retrieve(img);
+        cvtColor(img, img, CV_BGR2GRAY);
+        colorBalance(img, 0.01);
+        cv::imshow("out processed" , img);
+        cv::waitKey(30);
     }
 }
 
 
 BOOST_AUTO_TEST_CASE(colorBalanceByChannel_testcase) {
 
-    std::string path_daset = ABSOLUTE_PATH.substr(
+    std::string path_dataset = ABSOLUTE_PATH.substr(
                                             0,
                                             ABSOLUTE_PATH.find_last_of("/"));
 
-    path_daset += std::string(LOCAL_PATH) + std::string(FILE_NAME);
-    std::cout << "DATASET PATH " << path_daset << std::endl;
+    path_dataset += std::string(LOCAL_PATH) + std::string(FILE_NAME);
+    std::cout << "DATASET PATH " << path_dataset << std::endl;
 
-    cv::VideoCapture capture(path_daset);
+    cv::VideoCapture capture(path_dataset);
 
     while(capture.grab()){
 
@@ -59,7 +82,6 @@ BOOST_AUTO_TEST_CASE(colorBalanceByChannel_testcase) {
         capture.retrieve(img);
         cv::imshow("out original" , img);
         colorBalance(img, cv::Scalar(0.01,0.001,0.001));
-        cv::imshow("out colorBalance " , img);
 
         cv::Ptr<cv::CLAHE> clahe = cv::createCLAHE(2, cv::Size(4, 4));
         std::vector<cv::Mat> channels;
@@ -71,20 +93,20 @@ BOOST_AUTO_TEST_CASE(colorBalanceByChannel_testcase) {
 
         cv::imshow("out CLAHE " , img);
 
-        cv::waitKey();
+        cv::waitKey(30);
     }
 }
 
 BOOST_AUTO_TEST_CASE(AdaptiveColorBalance_testcase) {
 
-  std::string path_daset = ABSOLUTE_PATH.substr(
+  std::string path_dataset = ABSOLUTE_PATH.substr(
                                           0,
                                           ABSOLUTE_PATH.find_last_of("/"));
 
-  path_daset += std::string(LOCAL_PATH) + "video_00.avi";
-  std::cout << "DATASET PATH " << path_daset << std::endl;
+  path_dataset += std::string(LOCAL_PATH) + "video_00.avi";
+  std::cout << "DATASET PATH " << path_dataset << std::endl;
 
-  cv::VideoCapture capture(path_daset);
+  cv::VideoCapture capture(path_dataset);
 
   AdaptiveColorBalance color_balance(cv::Scalar(40, 51, 10),
                                      cv::Scalar(190, 235, 60));
