@@ -13,10 +13,7 @@ namespace underwater_image_tools {
 void colorBalance( cv::Mat& image, const cv::Scalar& percent_channel ){
 
     std::vector<cv::Mat> channels;
-    if(image.channels() == 3)
-        cv::split(image, channels);
-    else
-        channels.push_back(image);
+    cv::split(image, channels);
 
     for (size_t j = 0; j < channels.size(); j++) {
         cv::Mat flat = channels[j].reshape(1, 1).clone();
@@ -37,10 +34,7 @@ void colorBalance( cv::Mat& image, const cv::Scalar& percent_channel ){
         cv::normalize(channels[j], channels[j], 0, 255, cv::NORM_MINMAX);
     }
 
-    if(image.channels() == 3)
-        cv::merge(channels, image);
-    else
-        image = channels[0];
+    cv::merge(channels, image);
 }
 
 void colorBalance(cv::Mat& image, float percent){
@@ -70,10 +64,7 @@ void AdaptiveColorBalance::apply(  cv::Mat& image,
                                    float learn_rate){
 
     std::vector<cv::Mat> channels;
-    if(image.channels() == 3)
-        cv::split(image, channels);
-    else
-        channels.push_back(image);
+    cv::split(image, channels);
 
     for (size_t j = 0; j < channels.size(); j++) {
         cv::Mat flat = channels[j].reshape(1, 1).clone();
@@ -104,10 +95,7 @@ void AdaptiveColorBalance::apply(  cv::Mat& image,
         cv::normalize(channels[j], channels[j], 0, 255, cv::NORM_MINMAX);
     }
 
-    if(image.channels() == 3)
-        cv::merge(channels, image);
-    else
-        image = channels[0];
+    cv::merge(channels, image);
 }
 
 
