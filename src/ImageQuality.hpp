@@ -7,7 +7,7 @@ namespace underwater_image_tools {
 
 float computeEdgeDensity( cv::Mat& image,
                           int canny_threshold = 3,
-                          cv::Size image_size = cv::Size(250,250));
+                          cv::Size compute_size = cv::Size(250,250));
 
 } // end namespace dehaze_undewater_image
 
