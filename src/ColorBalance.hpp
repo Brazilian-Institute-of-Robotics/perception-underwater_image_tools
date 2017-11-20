@@ -24,6 +24,6 @@ private:
     cv::Scalar top_values_;
 };
 
-} // end namespace dehaze_undewater_image
+}
 
 #endif /* PERCEPTION_UNDERWATER_IMAGE_TOOLS_COLORBALANCE_HPP_ */

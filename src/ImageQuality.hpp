@@ -9,6 +9,6 @@ float computeEdgeDensity( cv::Mat& image,
                           int canny_threshold = 3,
                           cv::Size compute_size = cv::Size(250,250));
 
-} // end namespace dehaze_undewater_image
+}
 
 #endif /* PERCEPTION_UNDERWATER_IMAGE_TOOLS_IMAGEQUALITY_HPP_ */
